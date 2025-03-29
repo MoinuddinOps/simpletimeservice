@@ -19,5 +19,5 @@ USER appuser
 # Expose port
 EXPOSE 5000
 
-# Command to run the application
-CMD ["python", "app.py"]
+# Command to keep container running
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
