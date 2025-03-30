@@ -7,7 +7,7 @@ terraform/.terraform/
 
 #python
 app/myenv
-.idea/misc.xml
+.idea/*
 
 
 # Byte-compiled / optimized / DLL files
