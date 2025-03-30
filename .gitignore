@@ -1,6 +1,13 @@
-#python venv
-app/myenv
+#terraform
+terraform/.terraform.lock.hcl
+terraform/.terraform.tfstate.lock.info
+terraform/.terraform/
 
+
+
+#python
+app/myenv
+.idea/misc.xml
 
 
 # Byte-compiled / optimized / DLL files
