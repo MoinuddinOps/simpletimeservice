@@ -115,7 +115,7 @@ terraform-ecs-project/
   │── **logs.tf**                 # Define CloudWatch log group for ECS logging                                                           
   │── **outputs.tf**              # Define output variables (e.g., ALB URL)                                                      
   │── **versions.tf**             # Lock Terraform & provider versions                                                          
-  │── **backend.tf (optional)**   # Define remote backend (if using S3 for state storage)                                                
+  │── **backend.tf (optional)**   # Define remote backend (terraform cloud)                                                
 │── **README.md**                 # Documentation on how to deploy the infrastructure                           
                                                                    
                                                                                                
