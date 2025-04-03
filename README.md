@@ -4,11 +4,13 @@
 > This project provides a lightweight microservice that returns the current timestamp and the visitor's IP address in JSON format. It is designed to be built and run easily using Docker.
                                                                                                                                                                                    
 > [!NOTE]
->In this tutorial, you will deploy the **SimpleTimeService** on Docker and AWS infrastructure using Terraform for seamless automation.
+>In this tutorial, you will deploy the **SimpleTimeService** on Docker and AWS infrastructure using Terraform for seamless automation.                   
+> We break it down between Task 1 and Task 2.
 
-> [!IMPORTANT]
-> ## **Prerequisites**          
-To follow this tutorial, you will need the following:
+> [!IMPORTANT]                         
+> **Task 1**
+> ## 📦 **Prerequisites**         
+In this tutorial, you will run the app through Docker, you will need the following:
 1. Ubuntu 24.04 LTS 🐧 [Ubuntu](https://ubuntu.com/download) is the world’s favourite Linux operating system. Run it on your laptop, workstation, server or IoT device
 2. Docker 🐳 [Docker](https://www.docker.com/) is an application that simplifies the process of managing application processes in containers.
 3. Python 3 🐍 [Python](https://www.python.org/) is a versatile language popular for scripting, automation, data analysis, machine learning, and back-end development.
@@ -85,7 +87,85 @@ You will get the output in JSON format with current date and time, and the IP ad
 > [!NOTE]
 > Have a look at the attached screenshot for expected output.
 
-![image](https://github.com/user-attachments/assets/05cc1906-46c7-46d3-a904-56f419a7270a)
+![image](https://github.com/user-attachments/assets/05cc1906-46c7-46d3-a904-56f419a7270a)                                                                              
+
+> [!IMPORTANT]                         
+> **Task 2**                                 
+
+> 📌 Overview                                             
+This Terraform project provisions:                                
+✅ A VPC with 2 public and 2 private subnets                                 
+✅ An Application Load Balancer (ALB) in public subnets                                        
+✅ An ECS Fargate Cluster with a service running in private subnets                                               
+✅ A NAT Gateway to allow ECS tasks to pull images from Docker Hub                                                         
+✅ IAM Roles & Policies to manage ECS permissions                                                
+✅ CloudWatch Logs for monitoring ECS containers                                                                  
+
+
+**Project Structure**                                                                          
+terraform-ecs-project/                                                    
+  │── **terraform.tfvars**        # Define input variables (e.g., AWS region, VPC CIDR)                                     
+  │── **variables.tf**            # Declare variables used in Terraform                                                 
+  │── **providers.tf**            # Define AWS provider & region                                                         
+  │── **vpc.tf**                  # Define VPC, subnets, NAT gateway, and route tables                                                     
+  │── **security.tf**             # Define security groups for ALB & ECS                                                        
+  │── **alb.tf**                  # Define Application Load Balancer (ALB) & target group                                                     
+  │── **ecs.tf**                  # Define ECS cluster, task definition, and service                                     
+  │── **iam.tf**                  # Define IAM roles & policies for ECS                                                       
+  │── **logs.tf**                 # Define CloudWatch log group for ECS logging                                                           
+  │── **outputs.tf**              # Define output variables (e.g., ALB URL)                                                      
+  │── **versions.tf**             # Lock Terraform & provider versions                                                          
+  │── **backend.tf (optional)**   # Define remote backend (terraform cloud)                                                
+│── **README.md**                 # Documentation on how to deploy the infrastructure                           
+                                                                   
+                                                                                               
+> ## 📦 **Prerequisites**  
+In this tutorial, you will run the app through Amazon ECS, you will need the following:
+1. An AWS Account with required permissions (https://aws.amazon.com/resources/create-account)
+2. Terraform (v1.4+ recommended) (https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+3. AWS CLI
+
+**🌍 Configure AWS Credentials**                                                                          
+      Make sure your AWS credentials are set up:                                        
+##
+    aws configure
+or set environment variables:                                    
+##
+    export AWS_ACCESS_KEY_ID="your-access-key"
+    export AWS_SECRET_ACCESS_KEY="your-secret-key"
+    export AWS_REGION="us-east-1"                                          
+
+**🚀 Deployment Guide**                                                         
+Step 1️⃣: Clone the Repository
+##
+    git clone https://github.com/MoinuddinOps/simpletimeservice.git
+    cd simpletimeservice/terraform/                                                            
+                                                                                            
+Step 2️⃣: Initialize Terraform
+##
+    terraform init
+
+Step 3️⃣: Preview Infrastructure Changes
+##
+    terraform plan
+
+Step 4️⃣: Deploy the Infrastructure
+##
+    terraform apply -auto-approve
+
+Step 5️⃣: Get the ALB URL
+##
+    terraform output alb_dns_name
+    📌 Open in browser: http://<alb-dns-name>:5000                                       
+
+🚀 Destroying the Infrastructure                                                   
+    To remove all resources created by Terraform:
+##
+    terraform destroy -auto-approve                   
+
+
+
+    
 
 
 
