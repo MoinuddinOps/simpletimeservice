@@ -60,10 +60,10 @@ jobs:
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
         run: terraform init
-        working-directory: .terraform
+        working-directory: ./terraform/
 
       - name: Apply Terraform changes
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
         run: terraform apply -auto-approve
-        working-directory: .terraform
+        working-directory: ./terraform/
