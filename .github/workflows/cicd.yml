@@ -22,7 +22,7 @@ jobs:
       - name: Run Hadolint (Dockerfile Linter)
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: ${{ github.workspace }}/app/Dockerfile  # ✅ Correct path
+          dockerfile: ./app/Dockerfile
 
   build-and-push:
     name: Build & Push Docker Image
@@ -37,7 +37,7 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME ${{ github.workspace }}/app  # ✅ Correct path
+        run: docker build -t $IMAGE_NAME ./app
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
@@ -60,10 +60,10 @@ jobs:
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
         run: terraform init
-        working-directory: ${{ github.workspace }}/terraform  # ✅ Fixed
+        working-directory: .terraform
 
       - name: Apply Terraform changes
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
         run: terraform apply -auto-approve
-        working-directory: ${{ github.workspace }}/terraform  # ✅ Fixed
+        working-directory: .terraform
