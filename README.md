@@ -161,7 +161,72 @@ Step 5️⃣: Get the ALB URL
 🚀 Destroying the Infrastructure                                                   
     To remove all resources created by Terraform:
 ##
-    terraform destroy -auto-approve                   
+    terraform destroy -auto-approve                        
+
+> [!IMPORTANT]                         
+> **Task 2 (sub-task)**  
+🚀 **Terraform Setup for ALB + Lambda Container in a Private VPC**                               
+This Terraform project provisions an AWS VPC with public and private subnets, an ALB (Application Load Balancer), and a Lambda function running inside a container. The ALB listens on port 5000 and forwards traffic to the Lambda function.
+
+📌 Project Overview
+✅ VPC: 2 public & 2 private subnets                     
+✅ NAT Gateway: Allows private subnets to access the internet (for ECR image pull)                                         
+✅ Security Groups: Configured to allow traffic on port 5000                                
+✅ ALB (Application Load Balancer): Listens on port 5000 and forwards requests to Lambda                                 
+✅ Lambda Function: Runs a containerized application from ECR                             
+✅ ECR (Elastic Container Registry): Stores the Docker image                                                                                     
+
+
+> [!IMPORTANT]                         
+> ## 📦 **Prerequisites**                                           
+Ensure you have the following installed:                                
+1. Terraform (>= 1.0)                                  
+2. AWS CLI (configured with aws configure)                                  
+3. A pre-built Docker image pushed to AWS ECR
+
+⚙️ How to Deploy
+
+1️⃣ Clone the Repository
+##
+    git clone https://github.com/MoinuddinOps/simpletimeservice.git
+    cd terraform-serverless         
+
+2️⃣ Initialize Terraform   
+##
+    terraform init                     
+    
+3️⃣ Review the Plan
+##
+    terraform plan
+
+4️⃣ Apply the Configuration
+##
+    terraform apply -auto-approve
+
+
+🔍 How to Access the Lambda Function
+##
+    terraform output       
+
+    
+You should see an output like:
+##
+    alb_dns_name = "lambda-alb-123456789.us-east-1.elb.amazonaws.com"
+
+
+Test the Lambda Function
+Now, access the Lambda function via ALB
+##
+    curl http://lambda-alb-123456789.us-east-1.elb.amazonaws.com:5000
+    
+
+
+
+
+
+                              
+
+
 
 
 
