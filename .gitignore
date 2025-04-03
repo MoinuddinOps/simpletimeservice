@@ -1,7 +1,6 @@
 #terraform
 terraform/.terraform.lock.hcl
 terraform/.terraform.tfstate.lock.info
-terraform/.terraform/
 terraform-serverless/.terraform.lock.hcl
 terraform-serverless/.terraform
 terraform-serverless/.terraform.tfstate.lock.info
