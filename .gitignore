@@ -1,15 +1,7 @@
 #terraform
-terraform/.terraform/providers/*
-terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.93.0/linux_amd64/terraform-provider-aws_v5.93.0_x5
-terraform/.terraform.lock.hcl
-terraform/.terraform.tfstate.lock.info
 terraform-serverless/.terraform.lock.hcl
 terraform-serverless/.terraform
 terraform-serverless/.terraform.tfstate.lock.info
-# Ignore Terraform cache and binaries
-.terraform/
-terraform.tfstate
-terraform.tfstate.backup
 
 
 #python
