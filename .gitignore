@@ -4,6 +4,8 @@ terraform-serverless/.terraform
 terraform-serverless/.terraform.tfstate.lock.info
 
 terraform/.terraform/*
+terraform/.terraform.lock.hcl
+terraform/.terraform.tfstate.lock.info
 
 #python
 app/myenv
