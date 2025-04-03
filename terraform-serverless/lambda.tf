@@ -3,8 +3,8 @@ resource "aws_lambda_function" "my_lambda" {
   role          = aws_iam_role.lambda_role.arn
   package_type  = "Image"
   image_uri     = "895653987498.dkr.ecr.us-east-1.amazonaws.com/simpletimeapp:latest"
-  timeout       = 30
-  memory_size   = 512
+  timeout       = 900
+  memory_size   = 1024
 
   vpc_config {
     subnet_ids         = aws_subnet.private[*].id
